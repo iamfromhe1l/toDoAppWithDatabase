@@ -1,0 +1,33 @@
+<h1>ToDoApp</h1>
+
+<div id="tasks">
+  <ul class="collection with-header">
+      <li class="collection-header"><h4>Задачи</h4></li>
+      <div id="task-col">
+        {{#each tasks}}
+          <li class="collection-item">
+            <div class="task-content">
+              <div>
+                <h5>{{title}}</h5>
+                <h6 class="date">{{date}}</h6>
+              </div>
+                <button type="submit" class="secondary-content btn-flat task-delete" data-id="{{_id}}">
+                  Удалить
+                </button>            
+            </div>
+          </li>
+        {{/each}}
+        <li class="collection-item">
+              <div>
+                <form action="/" method="POST">
+                  <input name="title" type="text" class="task-input">
+                  <button type="submit" class="secondary-content btn-flat task-remove">
+                    Добавить задачу
+                  </button>
+                </form>
+              </div>
+              
+          </li>
+        </div>
+    </ul>
+</div>
