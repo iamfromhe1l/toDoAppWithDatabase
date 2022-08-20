@@ -2,3 +2,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.logo-a {
+  margin-left: 2rem;
+}
+
+.li-r {
+  margin-right: 2rem;
+}

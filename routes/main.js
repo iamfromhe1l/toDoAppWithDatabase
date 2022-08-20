@@ -1,32 +1,25 @@
 const {Router} = require('express')
 const router = Router()
 const Task = require('../models/task')
+const auth = require('../middlewares/auth')
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find().lean()
+
+router.get('/', auth, async (req, res) => {
+  const tasks = await req.user.tasks
   res.render('index', {
     tasks
   })
 })
 
-router.post('/', async (req, res) => {
-  const task = new Task({
-    title: req.body.title,
-    date: Date.now()
-  })
-  try {
-    await task.save()
-    res.redirect('/')
-  } catch (e) {
-    console.log(e)
-  }
+router.post('/', auth, async (req, res) => {
+  await req.user.addTask(req.body.title)
+  res.redirect('/')
 })
 
-router.delete('/remove/:id', async (req, res) => {
+router.delete('/remove/:id', auth, async (req, res) => {
   const id = req.params.id
-  await Task.findByIdAndRemove(id)
-  const tasks = await Task.find().lean()
-  res.status(200).json(tasks)
+  await req.user.deleteTask(id)
+  res.status(200).json(await req.user.tasks)
 })
 
 module.exports = router

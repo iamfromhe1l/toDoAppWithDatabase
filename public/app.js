@@ -14,7 +14,7 @@ document.querySelectorAll('.date').forEach(node => {
 })
 
 const $tasks = document.querySelector('#task-col')
-if ($tasks.querySelectorAll('.collection-item').length != 1) {
+if ($tasks && $tasks.querySelectorAll('.collection-item').length != 1) {
   $tasks.addEventListener('click', event => {
     if (event.target.classList.contains('task-delete')) {
       const id = event.target.dataset.id
@@ -59,6 +59,13 @@ if ($tasks.querySelectorAll('.collection-item').length != 1) {
       
     }
   })
-} else {
+} else if ($tasks) {
   $tasks.innerHTML = '<h2 style="text-align: center">Нет задач</h2>' + $tasks.innerHTML
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});
+
+M.Tabs.init(document.querySelectorAll('.tabs'));

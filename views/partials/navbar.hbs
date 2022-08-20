@@ -1,0 +1,12 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo logo-a">Задачи</a>
+    <ul class="right hide-on-med-and-down li-r">
+      {{#if isAuth}}
+        <li><a href="/auth/logout">Выйти</a></li>
+      {{else}}
+        <li><a href="sass.html">Вход</a></li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
